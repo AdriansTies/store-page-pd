@@ -140,7 +140,7 @@ nav a.active::after { width: 100%; }
 }
 
 .btn-primary {
-  display: inline-block;
+  display: inline;
   background-color: var(--dark-mauve);
   color: var(--white);
   padding: 0.85rem 2.5rem;
