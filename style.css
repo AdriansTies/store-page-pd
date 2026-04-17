@@ -60,14 +60,10 @@ nav a:hover {
 
 nav a.active { color: #553a41; }
 
-/* ── Hero section ────────────────────────────────────────────────
-   padding  →  adds space inside the section (top/bottom 5rem,
-               left/right 2rem).
-   text-align: center  →  centres all inline/text content.
-──────────────────────────────────────────────────────────────── */
+
 .hero {
   background-color: #e6e8e6;
-  padding: 5rem 2rem;
+  padding: 80px 32px;
   text-align: center;
 }
 
@@ -77,15 +73,8 @@ nav a.active { color: #553a41; }
 }
 
 .hero h1    { color: #553a41; margin-bottom: 1rem; }
-.hero p     { color: #555; font-size: 1.05rem; margin-bottom: 2rem; }
+.hero p     { color: #555; font-size: 16px; margin-bottom: 32px; }
 
-/* ── Button ──────────────────────────────────────────────────────
-   display: inline-block  →  lets it sit in text flow but still
-     accept padding.
-   border: 2px solid  →  visible outline around the button.
-   cursor: pointer  →  shows the hand cursor on hover.
-   transition  →  smoothly animates any property that changes.
-──────────────────────────────────────────────────────────────── */
 .btn-primary {
   display: inline-block;
   background-color: #553a41;
