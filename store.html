@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Preču Piedāvājums — ModaMāja</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -20,26 +23,54 @@
     </div>
   </header>
 
+  <!-- ── STORE MAIN ─────────────────────────────────────────────────
+       The store page has no hero section — it goes straight to the
+       product grid wrapped in a container for padding and border.
+  ──────────────────────────────────────────────────────────────── -->
   <main class="store-main">
     <div class="store-container">
 
+      <!-- ── SEARCH & FILTER ROW ────────────────────────────────────
+           A flex row: the search box expands to fill available space,
+           the filter button sits to its right.
+      ──────────────────────────────────────────────────────────────── -->
       <div class="search-filter-row">
+
         <div class="search-box">
           <input type="text" placeholder="Meklēt..." aria-label="Meklēt preces" />
+          <!-- input type="text" → single-line text field
+               placeholder → hint text shown when the field is empty
+               aria-label → accessible label for screen readers
+                 (no visible <label> here, so aria-label fills that role) -->
+
           <button class="search-btn" aria-label="Meklēt">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <!-- button → a clickable button; aria-label describes it for screen readers -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- svg → Scalable Vector Graphic; the magnifying-glass icon drawn
+                   with lines and a circle rather than a raster image.
+                   currentColor → the stroke colour matches the surrounding text colour. -->
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
           </button>
         </div>
+
         <button class="filter-btn">
           Filtrēt
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="currentColor">
+            <!-- small chevron/arrow icon drawn as an SVG path -->
             <path d="M0 2l5 6 5-6z"/>
           </svg>
         </button>
+
       </div>
 
+      <!-- ── PRODUCT GRID ──────────────────────────────────────────
+           store-grid uses the same CSS grid rules as product-grid.
+           Each article is a self-contained product card.
+      ──────────────────────────────────────────────────────────────── -->
       <div class="store-grid">
 
         <article class="product-card">
@@ -83,17 +114,6 @@
           <div class="product-prices">
             <span class="price-old">€79</span>
             <span class="price-new">€49</span>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-img">
-            <img src="https://fantabulosity.com/wp-content/uploads/2021/10/Crispy-Chicken-Burger.jpg" alt="Krekli" loading="lazy" />
-          </div>
-          <h3 class="product-name">KFC Special 1</h3>
-          <div class="product-prices">
-            <span class="price-old">€49</span>
-            <span class="price-new">€15</span>
           </div>
         </article>
 
@@ -145,7 +165,7 @@
           <div class="product-img">
             <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=400&q=80" alt="Svārki" loading="lazy" />
           </div>
-          <h3 class="product-name">Svārtki</h3>
+          <h3 class="product-name">Svārki</h3>
           <div class="product-prices">
             <span class="price-old">€59</span>
             <span class="price-new">€39</span>
@@ -176,17 +196,6 @@
 
         <article class="product-card">
           <div class="product-img">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZxdGWy5--s3mZfsZ7gIaQXlzac1tcW-h8AYzkW96vfkhR-j4MTnOt4aI&s=10" alt="Pidžama" loading="lazy" />
-          </div>
-          <h3 class="product-name">KFC Special 2</h3>
-          <div class="product-prices">
-            <span class="price-old">€49</span>
-            <span class="price-new">€15</span>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-img">
             <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&q=80" alt="Veste" loading="lazy" />
           </div>
           <h3 class="product-name">Veste</h3>
@@ -209,12 +218,34 @@
 
         <article class="product-card">
           <div class="product-img">
-            <img src="https://static.vecteezy.com/system/resources/previews/019/507/709/non_2x/sleeping-zzz-z-z-z-free-vector.jpg" alt="Kapuče" loading="lazy" />
+            <img src="https://printtoo.com/cdn/shop/files/Pavasaraputni-melnsbernut-krekls.jpg?v=1774522997&width=640" alt="Krekli" loading="lazy" />
           </div>
-          <h3 class="product-name">zzz</h3>
+          <h3 class="product-name">Krekli</h3>
+          <div class="product-prices">
+            <span class="price-old">€49</span>
+            <span class="price-new">€39</span>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&q=80" alt="Kapuče" loading="lazy" />
+          </div>
+          <h3 class="product-name">Kapuče</h3>
           <div class="product-prices">
             <span class="price-old">€75</span>
-            <span class="price-new">€150</span>
+            <span class="price-new">€55</span>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&q=80" alt="Sporta Bikses" loading="lazy" />
+          </div>
+          <h3 class="product-name">Sporta Bikses</h3>
+          <div class="product-prices">
+            <span class="price-old">€55</span>
+            <span class="price-new">€38</span>
           </div>
         </article>
 

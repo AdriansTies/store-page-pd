@@ -1,49 +1,105 @@
 <!DOCTYPE html>
+<!-- DOCTYPE → tells the browser this is a modern HTML5 document -->
 <html lang="lv">
+<!-- html lang="lv" → tells the browser (and screen readers) the page language is Latvian -->
 <head>
+  <!-- head → invisible section; holds metadata, title, and links to external files -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ModaMāja — Apģērbu Veikals</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  <!-- charset="UTF-8" → allows Latvian characters (ā, ē, ģ, ī, ķ, ļ, ņ, š, ū, ž) to display correctly -->
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- viewport → tells mobile browsers to match the device width instead of zooming out to desktop size -->
+
+  <title>ModaMāja — Apģērbu Veikals</title>
+  <!-- title → text shown in the browser tab -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <!-- link rel="stylesheet" → loads an external CSS file into this page;
+       here we load the Google Fonts (Lato and Playfair Display) -->
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- loads our own style.css which styles every element on the page -->
+</head>
+
+<body>
+<!-- body → everything visible on the page lives here -->
+
+  <!-- ── HEADER ───────────────────────────────────────────────────
+       header → semantic tag for the site header; tells the browser
+         (and screen readers) this is the top navigation area.
+       It is sticky (stays at the top while scrolling) via CSS.
+  ──────────────────────────────────────────────────────────────── -->
   <header>
     <div class="header-inner">
+      <!-- div → a generic container; here it centres content and
+           creates the flex row that holds the logo and nav -->
+
       <a href="index.html" class="logo">Moda<span>Māja</span></a>
+      <!-- a href → a hyperlink; clicking it navigates to index.html
+           span → inline container used only to colour "Māja" differently -->
+
       <nav>
+        <!-- nav → semantic tag that marks this as the site navigation -->
         <ul>
+          <!-- ul → unordered list; here used for nav links -->
           <li><a href="index.html" class="active">Sākumlapa</a></li>
+          <!-- li → a list item
+               class="active" → CSS uses this class to highlight the current page -->
           <li><a href="store.html">Preču piedāvājums</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
+  <!-- ── MAIN ─────────────────────────────────────────────────────
+       main → semantic tag marking the primary unique content of the
+         page (not the header or footer).
+  ──────────────────────────────────────────────────────────────── -->
   <main>
 
+    <!-- ── HERO SECTION ──────────────────────────────────────────
+         section → semantic tag for a thematic group of content.
+    ──────────────────────────────────────────────────────────────── -->
     <section class="hero">
       <div class="hero-content">
         <h1>Jaunā Sezona<br>Ir Klāt</h1>
+        <!-- h1 → the most important heading on the page (only one per page)
+             br → forces a line break inside the heading text -->
         <p>Atklājiet jaunākās modes tendences un iegādājieties kvalitatīvas preces par izdevīgām cenām.</p>
+        <!-- p → paragraph element for body text -->
         <a href="store.html" class="btn-primary">Pirkt Tagad</a>
+        <!-- styled as a button via CSS, but is still a link -->
       </div>
     </section>
 
+    <!-- ── DISCOUNTED PRODUCTS ─────────────────────────────────── -->
     <div class="section-wrapper">
       <div class="section-header">
         <h2>Preces ar atlaidi</h2>
+        <!-- h2 → second-level heading; used for section titles -->
         <div class="section-divider"></div>
+        <!-- empty div styled via CSS to appear as a horizontal line -->
       </div>
+
       <div class="product-grid">
+        <!-- product-grid → CSS grid container; displays cards in 4 columns -->
 
         <article class="product-card">
+          <!-- article → semantic tag for a self-contained piece of content;
+               each product card is its own article -->
           <div class="product-img">
             <img src="https://www.jackal.lv/wp-content/uploads/2025/08/darba-jaku-komplekts-2-jakas-savienojamas-1-ziemas-jaka-conor-nine-worths-work-jacket-parka-shell-breathable-waterproof-windproof-safety-workwear-olive-france-drosibas-darba-apgerbs-specapgerbs-1-600x600.jpg" alt="Ziemas Jaka" loading="lazy" />
+            <!-- img → embeds an image
+                 alt → describes the image for screen readers and when the image fails to load
+                 loading="lazy" → delays loading until the image is near the viewport (performance) -->
           </div>
           <h3 class="product-name">Ziemas Jaka</h3>
+          <!-- h3 → third-level heading; used for individual product names -->
           <div class="product-prices">
             <span class="price-old">€129</span>
+            <!-- span → generic inline container; here used to style each price separately -->
             <span class="price-new">€99</span>
           </div>
         </article>
@@ -84,11 +140,13 @@
       </div>
     </div>
 
+    <!-- ── NEW PRODUCTS ─────────────────────────────────────────── -->
     <div class="section-wrapper">
       <div class="section-header">
         <h2>Jaunākās preces</h2>
         <div class="section-divider"></div>
       </div>
+
       <div class="product-grid">
 
         <article class="product-card">
@@ -134,14 +192,19 @@
       </div>
     </div>
 
+    <!-- ── INFO BLOCK ─────────────────────────────────────────────── -->
     <div class="info-section">
       <p><strong>ModaMāja</strong> — Brīvības iela 123, Rīga</p>
+      <!-- strong → makes text bold AND signals it is important -->
       <p>Tel info</p>
       <p>info@modamaja.lv</p>
     </div>
 
   </main>
 
+  <!-- ── FOOTER ────────────────────────────────────────────────────
+       footer → semantic tag for the bottom area (contact, copyright).
+  ──────────────────────────────────────────────────────────────── -->
   <footer>
     <div class="footer-inner">
       <div class="footer-contact">

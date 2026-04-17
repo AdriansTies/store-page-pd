@@ -1,21 +1,28 @@
+/* ── Custom properties (CSS variables) ──────────────────────────
+   :root  →  defines variables that can be reused anywhere below.
+   var(--name) is how you use them.
+──────────────────────────────────────────────────────────────── */
 :root {
   --dark-mauve: #553a41;
-  --blue: #3a6ea5;
+  --rose:       #bb7e8c;
   --light-gray: #e6e8e6;
-  --rose: #bb7e8c;
   --near-black: #191919;
-  --white: #ffffff;
-  --transition: 0.25s ease;
+  --white:      #ffffff;
 }
 
-*, *::before, *::after {
+/* ── Reset ───────────────────────────────────────────────────────
+   *  →  selects every element on the page.
+   box-sizing: border-box  →  padding/border are included in the
+     declared width, so layout maths becomes predictable.
+   margin/padding: 0  →  removes browser default spacing.
+──────────────────────────────────────────────────────────────── */
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html { scroll-behavior: smooth; }
-
+/* ── Base styles ─────────────────────────────────────────────── */
 body {
   font-family: 'Lato', sans-serif;
   background-color: #f0f0ee;
@@ -24,26 +31,20 @@ body {
   line-height: 1.6;
 }
 
-a { text-decoration: none; color: inherit; }
-
-h1, h2, h3 {
-  font-family: 'Playfair Display', serif;
-  color: var(--near-black);
-}
-h1 { font-size: 2.6rem; line-height: 1.2; }
-h2 {
-  font-size: 1.05rem;
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-h3 {
-  font-size: 0.9rem;
-  font-family: 'Lato', sans-serif;
-  font-weight: 600;
+a {
+  text-decoration: none; /* removes the default underline from links */
+  color: inherit;        /* inherits the text colour of the parent  */
 }
 
+h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; line-height: 1.2; }
+h2 { font-size: 1rem;  font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+h3 { font-size: 0.9rem; font-weight: 600; }
+
+/* ── Header ──────────────────────────────────────────────────────
+   position: sticky; top: 0  →  the header "sticks" to the top of
+     the viewport while the user scrolls down.
+   z-index: 100  →  makes the header float above all other content.
+──────────────────────────────────────────────────────────────── */
 header {
   background-color: var(--white);
   border-bottom: 1px solid var(--light-gray);
@@ -52,6 +53,13 @@ header {
   z-index: 100;
 }
 
+/* ── Header inner wrapper ────────────────────────────────────────
+   display: flex  →  puts children (logo + nav) in a row.
+   justify-content: space-between  →  pushes them to opposite ends.
+   align-items: center  →  vertically centres them.
+   max-width + margin: 0 auto  →  centres the content block on wide
+     screens and limits how wide it can grow.
+──────────────────────────────────────────────────────────────── */
 .header-inner {
   max-width: 1100px;
   margin: 0 auto;
@@ -67,10 +75,13 @@ header {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--dark-mauve);
-  letter-spacing: 0.04em;
 }
-.logo span { color: var(--rose); }
+.logo span { color: var(--rose); } /* colours only the "Māja" part */
 
+/* ── Navigation ──────────────────────────────────────────────────
+   list-style: none  →  removes the bullet points from <ul>.
+   display: flex; gap  →  places <li> items side-by-side with space.
+──────────────────────────────────────────────────────────────── */
 nav ul {
   list-style: none;
   display: flex;
@@ -82,84 +93,65 @@ nav a {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--near-black);
-  position: relative;
-  transition: color var(--transition);
+  display: inline-block;       /* needed so transform works on <a> */
+  transition: transform 0.2s;  /* animates the scale smoothly      */
 }
 
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--rose);
-  transition: width var(--transition);
+/* ── Nav hover: SINGLE effect — just scales the link up slightly.
+   No underline, no colour change, no pseudo-element.
+──────────────────────────────────────────────────────────────── */
+nav a:hover {
+  transform: scale(1.1);
 }
 
-nav a:hover { color: var(--dark-mauve); }
-nav a:hover::after { width: 100%; }
 nav a.active { color: var(--dark-mauve); }
-nav a.active::after { width: 100%; }
 
+/* ── Hero section ────────────────────────────────────────────────
+   padding  →  adds space inside the section (top/bottom 5rem,
+               left/right 2rem).
+   text-align: center  →  centres all inline/text content.
+──────────────────────────────────────────────────────────────── */
 .hero {
   background-color: var(--light-gray);
   padding: 5rem 2rem;
   text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,
-    rgba(85,58,65,0.06) 0%,
-    rgba(58,110,165,0.06) 100%);
-  pointer-events: none;
 }
 
 .hero-content {
-  position: relative;
   max-width: 600px;
   margin: 0 auto;
 }
 
-.hero h1 {
-  color: var(--dark-mauve);
-  margin-bottom: 1rem;
-  font-size: 2.8rem;
-}
+.hero h1    { color: var(--dark-mauve); margin-bottom: 1rem; }
+.hero p     { color: #555; font-size: 1.05rem; margin-bottom: 2rem; }
 
-.hero p {
-  color: #555;
-  font-size: 1.05rem;
-  margin-bottom: 2rem;
-}
-
+/* ── Button ──────────────────────────────────────────────────────
+   display: inline-block  →  lets it sit in text flow but still
+     accept padding.
+   border: 2px solid  →  visible outline around the button.
+   cursor: pointer  →  shows the hand cursor on hover.
+   transition  →  smoothly animates any property that changes.
+──────────────────────────────────────────────────────────────── */
 .btn-primary {
-  display: inline;
+  display: inline-block;
   background-color: var(--dark-mauve);
   color: var(--white);
   padding: 0.85rem 2.5rem;
-  font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   border: 2px solid var(--dark-mauve);
   cursor: pointer;
-  transition: background-color var(--transition), color var(--transition), transform var(--transition);
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .btn-primary:hover {
   background-color: transparent;
   color: var(--dark-mauve);
-  transform: translateY(-2px);
 }
 
+/* ── Section wrapper (white card with border) ─────────────────── */
 .section-wrapper {
   max-width: 1100px;
   margin: 2rem auto;
@@ -168,6 +160,10 @@ nav a.active::after { width: 100%; }
   border: 1px solid #ddd;
 }
 
+/* ── Section header (title + horizontal rule) ────────────────────
+   The divider is a flex child with flex: 1, which means it
+   stretches to fill all remaining space in the row.
+──────────────────────────────────────────────────────────────── */
 .section-header {
   display: flex;
   align-items: center;
@@ -175,31 +171,49 @@ nav a.active::after { width: 100%; }
   margin-bottom: 1.5rem;
 }
 
-.section-header h2 { white-space: nowrap; }
-
 .section-divider {
   flex: 1;
   height: 1px;
   background-color: var(--light-gray);
 }
 
-.product-grid {
+/* ── Product grid ────────────────────────────────────────────────
+   display: grid  →  creates a grid layout.
+   repeat(4, 1fr)  →  4 equal columns (1fr = "one fraction of the
+     available space").
+   gap  →  space between grid cells.
+──────────────────────────────────────────────────────────────── */
+.product-grid,
+.store-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
+/* ── Product card ────────────────────────────────────────────────
+   display: flex; flex-direction: column  →  stacks image, name,
+     and price vertically inside the card.
+   align-items: center  →  centres them horizontally.
+   transition + :hover  →  SINGLE hover effect: the whole card
+     lifts up 4 px. No separate image zoom needed.
+──────────────────────────────────────────────────────────────── */
 .product-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   cursor: pointer;
-  transition: transform var(--transition);
+  transition: transform 0.2s;
 }
 
-.product-card:hover { transform: translateY(-4px); }
+.product-card:hover {
+  transform: translateY(-4px); /* the ONE hover effect for the card */
+}
 
+/* ── Product image container ─────────────────────────────────────
+   aspect-ratio: 1 / 1  →  forces the box to always be a square.
+   overflow: hidden  →  hides any part of the image that sticks out.
+──────────────────────────────────────────────────────────────── */
 .product-img {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -208,23 +222,22 @@ nav a.active::after { width: 100%; }
   margin-bottom: 0.75rem;
 }
 
+/* ── Product image ───────────────────────────────────────────────
+   object-fit: cover  →  fills the container without distorting the
+     image (crops if necessary).
+──────────────────────────────────────────────────────────────── */
 .product-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.35s ease;
 }
 
-.product-card:hover .product-img img { transform: scale(1.05); }
+.product-name { font-weight: 700; margin-bottom: 0.3rem; }
 
-.product-name {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--near-black);
-  margin-bottom: 0.3rem;
-}
-
+/* ── Prices ──────────────────────────────────────────────────────
+   display: flex + gap  →  puts old and new price side by side.
+──────────────────────────────────────────────────────────────── */
 .product-prices {
   display: flex;
   gap: 0.5rem;
@@ -232,38 +245,27 @@ nav a.active::after { width: 100%; }
   justify-content: center;
 }
 
-.price-old {
-  font-size: 0.85rem;
-  color: #999;
-  text-decoration: line-through;
-}
+.price-old  { font-size: 0.85rem; color: #999; text-decoration: line-through; }
+.price-new  { font-size: 1rem; font-weight: 700; }
+.price-only { font-size: 1rem; font-weight: 700; }
 
-.price-new {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--near-black);
-}
-
-.price-only {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--near-black);
-}
-
+/* ── Info block ──────────────────────────────────────────────────
+   Same pattern as .section-wrapper — white card with a border.
+──────────────────────────────────────────────────────────────── */
 .info-section {
   max-width: 1100px;
   margin: 2rem auto;
   background: var(--white);
   padding: 1.75rem 2.5rem;
   border: 1px solid #ddd;
-}
-
-.info-section p {
   font-size: 0.95rem;
-  color: var(--near-black);
   line-height: 2;
 }
 
+/* ── Footer ──────────────────────────────────────────────────────
+   justify-content: space-between  →  contact info left,
+     brand name right.
+──────────────────────────────────────────────────────────────── */
 footer {
   background-color: var(--light-gray);
   border-top: 1px solid #ccc;
@@ -279,9 +281,12 @@ footer {
   align-items: center;
 }
 
-.footer-contact p { font-size: 0.88rem; color: #444; line-height: 1.8; }
-.footer-copy { font-size: 0.88rem; color: #444; font-weight: 600; }
+.footer-inner p    { font-size: 0.88rem; color: #444; line-height: 1.8; }
+.footer-copy       { font-size: 0.88rem; color: #444; font-weight: 700; }
 
+/* ── Store page ──────────────────────────────────────────────────
+   Same wrapper approach as the home page sections.
+──────────────────────────────────────────────────────────────── */
 .store-main {
   max-width: 1100px;
   margin: 2rem auto;
@@ -294,10 +299,13 @@ footer {
   padding: 2rem 2.5rem;
 }
 
+/* ── Search & filter row ─────────────────────────────────────────
+   display: flex  →  search bar and filter button sit side by side.
+   flex: 1 on .search-box  →  it grows to fill all leftover width.
+──────────────────────────────────────────────────────────────── */
 .search-filter-row {
   display: flex;
   gap: 1rem;
-  align-items: center;
   margin-bottom: 2rem;
 }
 
@@ -305,7 +313,6 @@ footer {
   display: flex;
   flex: 1;
   border: 1.5px solid #ccc;
-  overflow: hidden;
 }
 
 .search-box input {
@@ -314,13 +321,14 @@ footer {
   font-family: 'Lato', sans-serif;
   font-size: 0.95rem;
   border: none;
-  outline: none;
-  background: transparent;
-  color: var(--near-black);
+  outline: none;   /* removes the blue glow on focus */
 }
 
 .search-box input::placeholder { color: #aaa; }
 
+/* ── Search button ───────────────────────────────────────────────
+   border-left  →  visual separator between the input and the icon.
+──────────────────────────────────────────────────────────────── */
 .search-btn {
   padding: 0 1rem;
   background: var(--white);
@@ -329,7 +337,6 @@ footer {
   cursor: pointer;
   font-size: 1rem;
   color: #666;
-  transition: background-color var(--transition);
 }
 
 .search-btn:hover { background-color: var(--light-gray); }
@@ -343,27 +350,21 @@ footer {
   background: var(--white);
   font-family: 'Lato', sans-serif;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  color: var(--near-black);
-  transition: background-color var(--transition), border-color var(--transition);
 }
 
-.filter-btn:hover {
-  background-color: var(--light-gray);
-  border-color: var(--dark-mauve);
-}
+.filter-btn:hover { background-color: var(--light-gray); }
+.filter-btn svg   { width: 10px; height: 10px; }
 
-.filter-btn svg { width: 10px; height: 10px; }
-
-.store-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-}
-
+/* ── Responsive breakpoints ──────────────────────────────────────
+   @media  →  applies the rules inside only when the screen width
+     matches the condition.
+   max-width: 900px  →  tablets and smaller → 2 columns.
+   max-width: 600px  →  phones → smaller heading, stacked footer.
+──────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .product-grid,
   .store-grid {
@@ -372,10 +373,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .product-grid,
-  .store-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   h1 { font-size: 2rem; }
   .footer-inner {
     flex-direction: column;
